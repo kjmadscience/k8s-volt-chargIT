@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-charging-data
+spec:
+  template:
+    spec:
+      containers:
+      - name: create-charging-data
+        image: jadejakajal13/create-charging-demo-data:3
+        envFrom:
+        - configMapRef:
+            name: chargit-benchmark-config
+        command: ["java", "-jar", "CreateChargingDemoData.jar", "$(hostnames)", "$(recordcount)", "$(load_data_tpms)","$(maxinitialcredit)"]
+      restartPolicy: Never

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chargit-benchmark-config
+data:
+  hostnames: "mydb-voltdb-cluster-0.mydb-voltdb-cluster-internal.kjadeja.svc.cluster.local"
+  recordcount: "1000000"
+  load_data_tpms: "20"
+  maxinitialcredit: "500"
+  tpms: "30"
+  durationseconds: "300"
+  queryseconds: "120"
+  kv_tpms: "20"
+  kv_durationseconds: "60"
+  kv_queryseconds: "10"
+  kv_jsonsize: "1024"   #check documentation
+  kv_deltaproportion: "0" #check documentation
+  del_tpms: "40"
+  kafkaserverplusport: ""
+  kafka_recordcount: ""
+  kafka_tpms: ""
+  kafka_durationseconds: ""
+  kafka_max_amount: ""
+

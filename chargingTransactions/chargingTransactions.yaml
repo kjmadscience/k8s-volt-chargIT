@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: charging-transactions
+spec:
+  template:
+    spec:
+      containers:
+      - name: charging-transactions
+        image: jadejakajal13/charging-transactions:1
+        envFrom:
+        - configMapRef:
+            name: chargit-benchmark-config
+        command: ["java", "-jar", "ChargingDemoTransactions.jar", "$(hostnames)", "$(recordcount)", "$(tpms)","$(durationseconds)","$(queryseconds)"]
+      restartPolicy: Never

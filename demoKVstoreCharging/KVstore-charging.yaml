@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: charging-kvstore
+spec:
+  template:
+    spec:
+      containers:
+      - name: charging-kvstore
+        image: jadejakajal13/charging-kvstore:1
+        envFrom:
+        - configMapRef:
+            name: chargit-benchmark-config
+        command: ["java", "-jar", "ChargingDemoKVStore.jar", "$(hostnames)", "$(recordcount)", "$(kv_tpms)","$(kv_durationseconds)","$(kv_queryseconds)","$(kv_jsonsize)", "$(kv_deltaproportion)"]
+      restartPolicy: Never

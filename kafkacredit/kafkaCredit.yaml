@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafka-credit
+spec:
+  template:
+    spec:
+      containers:
+      - name:  kafka-credit
+        image: jadejakajal13/charging-kafka-credit:1
+        envFrom:
+        - configMapRef:
+            name: chargit-benchmark-config
+        command: ["java", "-jar", "KafkaCreditDemo.jar", "$(kafkaserverplusport)", "$(kafka_recordcount)", "$(kafka_tpms)","$(kafka_durationseconds)","$(kafka_max_amount)"]
+      restartPolicy: Never

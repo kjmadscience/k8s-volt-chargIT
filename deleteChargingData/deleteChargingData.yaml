@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: delete-charging-data
+spec:
+  template:
+    spec:
+      containers:
+      - name: delete-charging-data
+        image: jadejakajal13/delete-charging-data:1
+        envFrom:
+        - configMapRef:
+            name: chargit-benchmark-config
+        command: ["java", "-jar", "DeleteChargingDemoData.jar", "$(hostnames)", "$(del_tpms)"]
+      restartPolicy: Never
