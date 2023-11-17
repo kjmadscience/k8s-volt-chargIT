@@ -1,0 +1,54 @@
+1. Configure all variable values in configmap yaml , update all volt config in properties.yaml -----  templating ? jenkins ui later?
+[hostnames: "mydb-voltdb-cluster-0.mydb-voltdb-cluster-internal.kjadeja.svc.cluster.local"
+  recordcount: "1000000"
+  load_data_tpms: "20"
+  maxinitialcredit: "500"
+  tpms: "30"
+  durationseconds: "300"
+  queryseconds: "120"
+  kv_tpms: "20"
+  kv_durationseconds: "60"
+  kv_queryseconds: "10"
+  kv_jsonsize: "1024"   #check documentation
+  kv_deltaproportion: "0" #check documentation
+  del_tpms: "40"
+  kafkaserverplusport: ""
+  kafka_recordcount: ""
+  kafka_tpms: ""
+  kafka_durationseconds: ""
+  kafka_max_amount: ""]
+2. Load schema
+ - copy jar gson-2.2.2.jar, voltdb-chargingdemo.jar inside a volt container at /tmp/
+ - kubectl exec -it mydb-voltdb-cluster-0 -- sqlcmd < create_db.sql
+
+3. Load User Data
+ - create job to upsert configured user data. 
+
+wait for job to complete
+
+4. Run transactions
+ - create job to run configured TPS transactions
+
+-- here, we may want to have an option to start multiple jobs if user wants, for example, 50K x 4 clients 
+
+5. Run the KV demo for this dataset (optional)
+ - create job to run configured TPS transactions
+
+-- here, we may want to have an option to start multiple jobs if user wants, for example, 50K x 4 clients 
+
+6. run Kafka Credit run (optional)
+- kafka setup, or volt topics setup handled for this
+ - create job to run configured TPS transactions
+
+-- here, we may want to have an option to start multiple jobs if user wants, for example, 50K x 4 clients
+
+7. Delete charging data (clean up) (optional) - in k8s do we need clean up? or just a helm uninstall followed by install
+
+------
+
+during the run, i want the run start and end time stamps noted for relevant monitoring dashboards
+
+a thought: 
+what about datadog? d11 uses it, we have a "free" sandbox, AFAIK its free, i could be wrong. 
+Managed solution, just few yamls and new metrics system can report to datadog - however, i tried to test it, those few yamls didnt work for me, yet!
+d11 uses it, we provide dashboards for them anywaysssss.
