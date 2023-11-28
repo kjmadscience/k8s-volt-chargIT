@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  del_tpms: '50'
+  durationseconds: '120'
+  hostnames: custom-hostname
+  kafka_durationseconds: '300'
+  kafka_max_amount: '500'
+  kafka_recordcount: '300'
+  kafka_tpms: '3'
+  kafkaserverplusport: kafka:9092
+  kv_deltaproportion: '1'
+  kv_durationseconds: '100'
+  kv_jsonsize: '1024'
+  kv_queryseconds: '100'
+  kv_tpms: '20'
+  load_data_tpms: '50'
+  maxinitialcredit: '10000'
+  queryseconds: '5'
+  recordcount: '10000000'
+  tpms: '35'
+kind: ConfigMap
+metadata:
+  name: chargit-benchmark-config

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chargit-benchmark-config
+data:
+  hostnames: "{{ hostnames | default('mydb-voltdb-cluster-client:21212') }}"
+  recordcount: "{{ recordcount | default('1000000') }}"
+  load_data_tpms: "{{ load_data_tpms | default('10') }}"
+  maxinitialcredit: "{{ maxinitialcredit | default('1000') }}"
+  tpms: "{{ tpms | default('50') }}"
+  durationseconds: "{{ durationseconds | default('300') }}"
+  queryseconds: "{{ queryseconds | default('120') }}"
+  kv_tpms: "{{ kv_tpms | default('50') }}"
+  kv_durationseconds: "{{ kv_durationseconds | default('300') }}"
+  kv_queryseconds: "{{ kv_queryseconds | default('120') }}"
+  kv_jsonsize: "{{ kv_jsonsize | default('1024') }}"   #check documentation
+  kv_deltaproportion: "{{ kv_deltaproportion | default('50') }}" #check documentation
+  del_tpms: "{{ del_tpms | default('50') }}"
+  kafkaserverplusport: "{{ kafkaserverplusport | default('kafka:port') }}"
+  kafka_recordcount: "{{ kafka_recordcount | default('50') }}"
+  kafka_tpms: "{{ kafka_tpms | default('50') }}"
+  kafka_durationseconds: "{{ kafka_durationseconds | default('50') }}"
+  kafka_max_amount: "{{ kafka_max_amount | default('50') }}"
+
